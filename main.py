@@ -5,6 +5,12 @@ import _sqlite3, os
 # docker build -t exam .
 # docker run -p 5000:5000 -v game-data:/app/data exam
 
+# git add <file_name>
+# git commit --amend --no-edit
+# git commit -m "message"
+# git push
+# git push --force
+
 app = Flask(__name__)
 
 DATABASE_FOLDER = "data"
@@ -28,7 +34,7 @@ def create_table():
             platform TEXT NOT NULL,
             rating TEXT NOT NULL,
             description TEXT,
-            year INTEGER NOT NULL
+            release_year INTEGER NOT NULL
             )""")
     conn.commit()
     conn.close()
@@ -40,18 +46,88 @@ def  home():
     return render_template('welcome_page.html')
 
 
-@app.route('/game_list')
-def  game_list():
-    return render_template('game_list.html')
+@app.route('/game_list', methods=['GET']) # Commit 2
+def game_list():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = "SELECT * FROM games"
+    conditions = []
+    parameters = []
+
+    name = request.args.get('name-search', '').strip()
+    genre = request.args.get('genre-search', '').strip()
+    platform = request.args.get('platform-search', '').strip()
+    rating = request.args.get('rating-search', '').strip()
+    year = request.args.get('year-search', '').strip()
+
+    if name:
+        conditions.append("title LIKE ?")
+        parameters.append(f"%{name}%")
+    
+    if genre:
+        conditions.append("genre LIKE ?")
+        parameters.append(f"%{genre}%")
+
+    if platform:
+        conditions.append("platform LIKE ?")
+        parameters.append(f"%{platform}%")
+
+    if rating:
+        conditions.append("rating >= ?") 
+        parameters.append(float(rating))
+
+    if year:
+        conditions.append("release_year = ?")
+        parameters.append(int(year))
+
+    if conditions:
+        query += " WHERE " + " AND ".join(conditions)
+
+    cursor.execute(query, tuple(parameters))
+    games = cursor.fetchall()
+    conn.close()
+
+    return render_template('game_list.html', games=games, search_values={
+        'name': name, 'genre': genre, 'platform': platform, 'rating': rating, 'year': year
+    })
 
 
-@app.route('/game/<int:game_id>')
+@app.route('/game/<int:game_id>') # Commit 2
 def  game_detail(game_id):
-    return render_template('game_detail.html', game_id=game_id)
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM games WHERE id = ?", (game_id,))
+    game = cursor.fetchone()
+    conn.close()
+    
+    if game is None:
+        return "Game not found", 404
+    return render_template('game.html', game=game)
 
 
-@app.route('/add_game', methods=['GET', 'POST'])
+@app.route('/add_game', methods=['GET', 'POST']) # Commit 2
 def  add_game():
+    if request.method == 'POST':
+        title = request.form['title']
+        genre = request.form['genre']
+        platform = request.form['platform']
+        rating = request.form['rating']
+        description = request.form['description']
+        release_year = request.form['release_year']
+
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO games (title, genre, platform, rating, description, year)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (title, genre, platform, rating, description, release_year))
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for('game_list'))
+
     return render_template('add_game.html')
 
 

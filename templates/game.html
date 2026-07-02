@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+    <h1>{{ game[1] }}</h1>
+    <p><strong>Genre:</strong> {{ game[2] }}</p>
+    <p><strong>Platform:</strong> {{ game[3] }}</p>
+    <p><strong>Rating:</strong> {{ game[4] }} / 10</p>
+    <p><strong>Release Year:</strong> {{ game[6] }}</p>
+    <p><strong>Description:</strong> {{ game[5] }}</p>
+
+{% endblock %}
