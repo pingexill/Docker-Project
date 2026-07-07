@@ -4,6 +4,13 @@
 
 {% block content %}
 
-    
+    <h1>Recommended Game</h1>
+    <div class="list-item" onclick="window.location.href='/game/{{ game[0] }}'">
+
+        <p>{{ game[1] }}</p>
+        
+        <p>{{ game[8] }}</p>
+
+    </div>
 
 {% endblock %}

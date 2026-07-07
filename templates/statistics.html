@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <h1>Statistics</h1>
+
+    <h2>Total Games</h2>
+    <ul>    
+        <li>{{ total_games }}</li>
+    </ul>
+
+    <h2>Genre Distribution</h2>
+    <ul>
+        {% for genre, count in genre_stats %}
+            <li>{{ genre }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Platform Distribution</h2>
+    <ul>
+        {% for platform, count in platform_stats %}
+            <li>{{ platform }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Rating Distribution</h2>
+    <ul>
+        {% for rating, count in rating_stats %}
+            <li>{{ rating }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Average Rating</h2>
+    <ul>
+        <li>{{ average_rating }}</li>
+    </ul>
+
+    <h2>Release Year Statistics</h2>
+    <ul>
+        <li class="list-item" onclick="window.location.href='/game/{{ min_year[0] }}'">Minimum Year: {{ min_year[6] }}</li>
+        <li class="list-item" onclick="window.location.href='/game/{{ max_year[0] }}'">Maximum Year: {{ max_year[6] }}</li>
+    </ul>
+
+    <h2>Rating Statistics</h2>
+    <ul>
+        <li class="list-item" onclick="window.location.href='/game/{{ min_rating[0] }}'">Minimum Rating: {{ min_rating[4] }}</li>
+        <li class="list-item" onclick="window.location.href='/game/{{ max_rating[0] }}'">Maximum Rating: {{ max_rating[4] }}</li>
+    </ul>
+{% endblock %}

@@ -76,6 +76,32 @@
         =base.html(Поменял GameCatalog на Welcome; {% block content %}{%endblock %}) \
     ) 
 
-070726: 
- 
-080726: 
+070726: \
+    -sql ( \
+        +image_url \
+        +creator \
+        + price \
+    ) \
+    -main.py( \ 
+        +def delete_game() \
+        -Изменения от добавления новых строк данных в БД( \
+            =def add_game() \
+            =def game_list() \
+            =def game() \
+        ) \
+        +def statistics() \
+        +def recommend_game()
+    ) \
+    -templates( \
+        +statistics.html
+        -Изменения от добавления новых строк данных в БД( \
+            =add_game.html
+            =game_list.html
+            =game.html(+Удаление)
+        )\
+        +recommend_game.html \
+    )
+
+080726: \
+===!PLANING!=== \
+![alt text](image.png) \

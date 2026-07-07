@@ -9,6 +9,8 @@
         <input type="text" name="platform-search" placeholder="Search by platform..." value="{{ search_values.platform if search_values }}">
         <input type="number" name="rating-search" placeholder="Search by rating" min="0" max="10" step="0.1" value="{{ search_values.rating if search_values }}">
         <input type="number" name="year-search" placeholder="Search by year" min="1900" max="2026" value="{{ search_values.year if search_values }}">
+        <input type="text" name="creator-search" placeholder="Search by creator..." value="{{ search_values.creator if search_values }}">
+        <input type="text" name="price-search" placeholder="Search by price..." value="{{ search_values.price if search_values }}">
         <button type="submit">Search</button>
     </form>
 
@@ -21,6 +23,9 @@
                 <th>Platform</th>
                 <th>Rating</th>
                 <th>Release Year</th>
+
+                <th>Creator</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
@@ -32,10 +37,13 @@
                     <td>{{ game[3] }}</td>
                     <td>{{ game[4] }}</td>
                     <td>{{ game[6] }}</td>
+                    
+                    <td>{{ game[8] }}</td>
+                    <td>{{ game[9] }}</td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5" class="no-results">No games found matching your criteria.</td>
+                    <td colspan="8" class="no-results">No games found matching your criteria.</td>
                 </tr>
             {% endfor %}
         </tbody>
