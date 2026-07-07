@@ -1,5 +1,5 @@
 26. Каталог игр
-Название игры, жанр, платформа, рейтинг, описание, год выхода.
+Название игры, жанр, платформа, рейтинг, описание, год выхода. 5 8
 Пример таблицы: games: id, title, genre, platform, rating, description, year.
 Минимальный функционал: добавление записи, вывод списка, поиск или фильтр, удаление, страница статистики, запуск через Docker с Volume.
 
@@ -34,6 +34,7 @@
     - image \
     - creator \
     - price \
+
 
 
 =========================================================================
@@ -80,7 +81,7 @@
     -sql ( \
         +image_url \
         +creator \
-        + price \
+        +price \
     ) \
     -main.py( \ 
         +def delete_game() \
@@ -90,18 +91,18 @@
             =def game() \
         ) \
         +def statistics() \
-        +def recommend_game()
+        +def recommend_game() \
     ) \
     -templates( \
-        +statistics.html
+        +statistics.html \
         -Изменения от добавления новых строк данных в БД( \
-            =add_game.html
-            =game_list.html
-            =game.html(+Удаление)
-        )\
+            =add_game.html \
+            =game_list.html \
+            =game.html(+Удаление) \
+        ) \
         +recommend_game.html \
     )
 
 080726: \
-===!PLANING!=== \
-![alt text](image.png) \
+    - Добавленна Документация
+    - Маленькие изменения

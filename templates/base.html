@@ -10,14 +10,43 @@
 
 <body>
     <nav>
-        <a href="/" class="logo">Welcome</a>
+        <a href="/" class="logo">NeoForge</a>
         <a href="/game_list">Games</a>
         <a href="/add_game">Add Game</a>
         <a href="/recommend_game">Recommended</a>
         <a href="/statistics">Statistics</a>
     </nav>
-    {% block content %}
-    {% endblock %}
+    <div class="main-wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- New Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo">NeoForge</a>
+                <p>The ultimate strategic hub to monitor, catalog, and optimize your personal gaming library.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <a href="/game_list">Vault List</a>
+                <a href="/add_game">Deploy Game</a>
+                <a href="/statistics">System Stats</a>
+            </div>
+            <div class="footer-socials">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#" title="Discord">🎮</a>
+                    <a href="#" title="Twitch">🔮</a>
+                    <a href="#" title="Twitter / X">🐦</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NeoForge. All Rights Reserved. Engineered for Players.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

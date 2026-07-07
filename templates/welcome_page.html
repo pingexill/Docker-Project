@@ -1,9 +1,31 @@
 {% extends "base.html" %}
 
-{% block title %}Welcome{% endblock %}
+{% block title %}Welcome to Endgame Vault{% endblock %}
 
 {% block content %}
-
+<div class="hero-section">
+    <div class="hero-content">
+        <span class="hero-tag">Ultimate Gaming Index</span>
+        <h1>Track. Discover. <br><span class="text-accent">Level Up.</span></h1>
+        <p class="hero-lead">Welcome to the central command for your digital library. Manage your gaming collection, filter through genres, track market prices, and view real-time deployment statistics.</p>
+        
+        <div class="hero-actions">
+            <a href="/game_list" class="btn btn-primary">Browse Vault</a>
+            <a href="/add_game" class="btn btn-secondary">Deploy New Game</a>
+        </div>
+    </div>
     
-
+    <div class="hero-features">
+        <div class="feature-card" onclick="window.location.href='/recommend_game'">
+            <div class="feature-icon">🎯</div>
+            <h3>Smart Pick</h3>
+            <p>Let our engine recommend your next tactical obsession.</p>
+        </div>
+        <div class="feature-card" onclick="window.location.href='/statistics'">
+            <div class="feature-icon">📊</div>
+            <h3>Data Analytics</h3>
+            <p>Review metrics, breakdown platform stats, and analyze ratings.</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -49,7 +49,7 @@ def  home():
     return render_template('welcome_page.html')
 
 
-@app.route('/game_list', methods=['GET']) # Commit 2
+@app.route('/game_list', methods=['GET'])
 def game_list():
     conn = get_connection()
     cursor = conn.cursor()
@@ -109,7 +109,7 @@ def game_list():
     })
 
 
-@app.route('/game/<int:game_id>') # Commit 2
+@app.route('/game/<int:game_id>')
 def  game_detail(game_id):
     conn = get_connection()
     cursor = conn.cursor()
@@ -133,7 +133,7 @@ def delete_game(game_id):
 
     return redirect(url_for('game_list'))
 
-@app.route('/add_game', methods=['GET', 'POST']) # Commit 2
+@app.route('/add_game', methods=['GET', 'POST'])
 def  add_game():
     if request.method == 'POST':
         title = request.form['title']
