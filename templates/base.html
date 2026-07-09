@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>>{% block title %}My Web App{% endblock %}</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>{% block title %}My Web App{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style-new.css">
 </head>
 
 <body>
@@ -16,10 +16,10 @@
         <a href="/recommend_game">Recommended</a>
         <a href="/statistics">Statistics</a>
     </nav>
-    <div class="main-wrapper">
+    <main class="main-wrapper">
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
 
     <!-- New Footer -->
     <footer>

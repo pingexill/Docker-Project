@@ -1,0 +1,623 @@
+/* ==========================================================================
+   1. GLOBAL RESET & CORE THEME SYSTEM
+   ========================================================================== */
+:root {
+    --bg-main: #08121e;
+    --bg-surface: #112031;
+    --bg-surface-hover: #182c44;
+    --accent-primary: #ff2851;      /* Neon Crimson */
+    --accent-primary-hover: #e01b41;
+    --accent-secondary: #00f0ff;    /* Cyber Cyan */
+    --accent-secondary-hover: #00c8d6;
+    --text-main: #f0f5fa;
+    --text-muted: #8fa0b0;
+    --border-color: #1e3550;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --transition-speed: 0.25s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Base link reset */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ==========================================================================
+   2. LAYOUT WRAPPERS & CORE NAV / FOOTER
+   ========================================================================== */
+.main-wrapper {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header Navigation */
+nav {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    text-transform: uppercase;
+    position: relative;
+}
+
+nav .logo::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40%;
+    height: 3px;
+    background-color: var(--accent-primary);
+}
+
+nav a:not(.logo) {
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 16px;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+}
+
+nav a:not(.logo):hover, 
+nav a:not(.logo).active {
+    color: var(--text-main);
+    background-color: var(--bg-main);
+}
+
+/* New Footer */
+footer {
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding: 40px 20px 20px 20px;
+    margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .footer-container { grid-template-columns: 1fr; gap: 25px; }
+}
+
+.footer-brand .logo {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 12px;
+    max-width: 350px;
+}
+
+.footer-links h4, .footer-socials h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.footer-links a:hover {
+    color: var(--accent-secondary);
+}
+
+.social-icons a {
+    font-size: 20px;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.social-icons a:hover {
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   3. REUSABLE FORMS, INPUTS & CONTROLS
+   ========================================================================== */
+form {
+    width: 100%;
+}
+
+input, textarea, select, button {
+    font-family: inherit;
+    color: inherit;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    width: 100%;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+}
+
+/* Global Buttons UI */
+button, .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform 0.1s, box-shadow var(--transition-speed);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:active, .btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary, button[type="submit"]:not(.table-delete-btn) {
+    background-color: var(--accent-primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover, button[type="submit"]:not(.table-delete-btn):hover {
+    background-color: var(--accent-primary-hover);
+    box-shadow: 0 0 15px rgba(255, 40, 81, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   4. HOME/HERO COMPONENT
+   ========================================================================== */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 40px 0;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-tag {
+    color: var(--accent-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.hero-section h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.text-accent {
+    color: var(--accent-primary);
+    position: relative;
+}
+
+.hero-lead {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 30px;
+    cursor: pointer;
+    transition: transform var(--transition-speed), border-color var(--transition-speed);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-secondary);
+}
+
+.feature-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   5. BUG FIXED COMPONENTS
+   ========================================================================== */
+
+/* --- BUG 1: Game List Search Layout & Form X Button Padding Shifting --- */
+h1 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-secondary);
+    border-radius: var(--radius-sm);
+}
+
+/* Search Dashboard bar layout config */
+form[method="GET"] {
+    background-color: var(--bg-surface);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+form[method="GET"] button {
+    height: 100%;
+}
+
+/* Table architecture */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--text-main);
+    text-align: left;
+    padding: 16px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+td {
+    padding: 16px;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+tr.list-item {
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+tr.list-item:hover {
+    background-color: var(--bg-surface-hover);
+}
+
+/* FIX: Compact context wrapper around delete form button so row height doesn't explode */
+td:last-child {
+    width: 1%;
+    white-space: nowrap;
+    text-align: right;
+}
+
+td form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dynamic styling targeting the standard cell delete X element */
+button[type="submit"]:not(.btn):not(.hero-actions a) {
+    padding: 6px 12px;
+    font-size: 13px;
+    background-color: rgba(255, 40, 81, 0.1);
+    color: var(--accent-primary);
+    border: 1px solid rgba(255, 40, 81, 0.3);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+button[type="submit"]:not(.btn):not(.hero-actions a):hover {
+    background-color: var(--accent-primary);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 40, 81, 0.3);
+}
+
+.no-results {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px;
+    font-style: italic;
+}
+
+
+/* --- BUG 2: Unchanged/Plain "Go Back" Button Styling on game.html --- */
+.game-detail-container {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    display: flex;
+    gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .game-detail-container { flex-direction: column; }
+}
+
+.game-detail-img {
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border-color);
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.game-info-panel h1 {
+    margin-bottom: 15px;
+}
+
+.game-info-panel p {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.game-info-panel strong {
+    color: var(--accent-secondary);
+}
+
+/* Dedicated Action Controls row */
+.action-row {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* FIX: Beautifully styled standalone "Go Back" interaction elements */
+button[onclick="history.back()"] {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-main);
+}
+
+button[onclick="history.back()"]:hover {
+    border-color: var(--accent-secondary);
+    color: var(--accent-secondary);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+}
+
+
+/* --- BUG 3: "Recommend Another Game" Form Control Styling Fix --- */
+.recommend-box {
+    text-align: center;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+/* FIX: Distinct style properties matching recommendations */
+form[action="/recommend_game"] {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+form[action="/recommend_game"] button {
+    background-color: transparent;
+    border: 2px solid var(--accent-secondary);
+    color: var(--accent-secondary);
+    padding: 14px 32px;
+    font-weight: 700;
+}
+
+form[action="/recommend_game"] button:hover {
+    background-color: var(--accent-secondary);
+    color: var(--bg-main);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+
+/* --- BUG 4: Clickable Meta Rows in statistics.html Look Inactive --- */
+h2 {
+    font-size: 20px;
+    margin: 30px 0 15px 0;
+    color: var(--accent-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+}
+
+ul li:not(.list-item) {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+}
+
+/* FIX: Inject clear affordance, states & animations into interactive element */
+ul li.list-item {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-primary); /* Left identity stripe */
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
+    transition: transform var(--transition-speed), background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+ul li.list-item:hover {
+    background-color: var(--bg-surface-hover);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px) translateX(2px);
+}
+
+/* Subtle inline micro-hint indicator text appended on hover */
+ul li.list-item::after {
+    content: '➔';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    color: var(--accent-primary);
+    transition: opacity var(--transition-speed), right var(--transition-speed);
+}
+
+ul li.list-item:hover::after {
+    opacity: 1;
+    right: 15px;
+}
+
+/* ==========================================================================
+   6. APP SPECIFIC SUBSYSTEMS (ADD GAME)
+   ========================================================================== */
+form[method="POST"]:not([action*="delete_game"]):not([action="/recommend_game"]) {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+form[method="POST"] textarea {
+    min-height: 120px;
+    resize: vertical;
+}

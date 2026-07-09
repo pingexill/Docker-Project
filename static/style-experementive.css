@@ -1,0 +1,509 @@
+/* ==========================================================================
+   Endgame-Inspired Gaming Theme (NeoForge)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+:root {
+    --bg-main: #081624;
+    --bg-darker: #050e17;
+    --bg-card: #0b1c2c;
+    --accent-color: #b110ff;
+    --accent-gradient: linear-gradient(135deg, #b110ff 0%, #ff007f 100%);
+    --text-main: #ffffff;
+    --text-muted: #b2c0cd;
+    --border-color: rgba(177, 16, 255, 0.2);
+    --border-hover: rgba(177, 16, 255, 0.6);
+    --font-primary: 'Roboto', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+/* Base Resets & Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: #ff007f;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-darker);
+    padding: 20px 10%;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+nav a:not(.logo) {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 25px;
+    letter-spacing: 1px;
+}
+
+nav a:not(.logo):hover {
+    color: #ff007f;
+}
+
+/* Layout Wrappers */
+.main-wrapper {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: 70vh;
+}
+
+/* Buttons */
+button, .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    text-align: center;
+}
+
+.btn-primary, button[type="submit"] {
+    background: var(--accent-gradient);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(177, 16, 255, 0.4);
+}
+
+.btn-primary:hover, button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 127, 0.6);
+}
+
+.btn-secondary, button:not([type="submit"]) {
+    background: transparent;
+    color: #fff;
+    border: 2px solid var(--accent-color);
+}
+
+.btn-secondary:hover, button:not([type="submit"]):hover {
+    background: var(--accent-color);
+    box-shadow: 0 0 15px rgba(177, 16, 255, 0.5);
+}
+
+/* Forms & Filter Controls */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+input, textarea, select {
+    background-color: var(--bg-darker);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 12px 20px;
+    font-family: var(--font-primary);
+    border-radius: 6px;
+    font-size: 14px;
+    flex: 1 1 200px;
+    transition: border-color var(--transition-speed);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ff007f;
+    box-shadow: 0 0 5px rgba(255, 0, 127, 0.3);
+}
+
+textarea {
+    min-height: 120px;
+    flex-basis: 100%;
+    resize: vertical;
+}
+
+form button {
+    flex-grow: 0;
+    align-self: center;
+}
+
+/* Custom layout tweak for Add Game form to stack cleanly */
+h1 + form {
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+h1 + form input, h1 + form textarea, h1 + form button {
+    flex: 1 1 auto;
+    width: 100%;
+}
+
+/* Hero Section (Welcome Page) */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .hero-section { grid-template-columns: 1fr; }
+}
+
+.hero-tag {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ff007f;
+    letter-spacing: 3px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.text-accent {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(177, 16, 255, 0.5);
+}
+
+.hero-lead {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* Feature Cards */
+.hero-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.feature-card:hover {
+    transform: translateX(8px);
+    border-color: var(--border-hover);
+    box-shadow: 0 5px 25px rgba(177, 16, 255, 0.15);
+}
+
+.feature-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.feature-card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Tables (Game List) */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-top: 20px;
+}
+
+th {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    padding: 15px;
+    text-align: left;
+}
+
+tbody tr {
+    background-color: var(--bg-card);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+td {
+    padding: 18px 15px;
+    font-size: 14px;
+}
+
+tbody tr td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-left: 3px solid transparent;
+}
+
+tbody tr td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Actionable List Items / Rows */
+.list-item {
+    cursor: pointer;
+}
+
+tbody tr.list-item:hover {
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+tbody tr.list-item:hover td:first-child {
+    border-left-color: var(--accent-color);
+}
+
+.no-results {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Delete Button Overrides inside Tables */
+tbody td form {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: none;
+    display: inline;
+}
+
+tbody td form button {
+    padding: 5px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+    background: #ff3333;
+    box-shadow: none;
+}
+tbody td form button:hover {
+    background: #ff0000;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+}
+
+/* Single Game Detail View & Smart Pick Recommendation */
+.main-wrapper > img {
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+}
+
+.main-wrapper > p {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+}
+
+.main-wrapper > p strong {
+    color: var(--text-main);
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    display: inline-block;
+    width: 140px;
+}
+
+.main-wrapper > h1 {
+    font-size: 36px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* Recommendation Box Tweak */
+div.list-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 20px;
+    transition: all var(--transition-speed);
+}
+div.list-item:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 20px rgba(177,16,255,0.2);
+}
+div.list-item p:first-child {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* Statistics Lists */
+h2 {
+    font-size: 18px;
+    color: #ff007f;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    background: var(--bg-card);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+ul li.list-item {
+    transition: all var(--transition-speed);
+}
+
+ul li.list-item:hover {
+    border-color: var(--border-hover);
+    color: var(--text-main);
+    transform: translateY(-2px);
+}
+
+/* Footer Section */
+footer {
+    background-color: var(--bg-darker);
+    padding: 60px 10% 20px 10%;
+    margin-top: 100px;
+    border-top: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-brand {
+    flex: 1 1 300px;
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 15px;
+    max-width: 320px;
+}
+
+.footer-links, .footer-socials {
+    flex: 1 1 150px;
+}
+
+.footer-container h4 {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #ff007f;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.footer-links a:hover {
+    color: var(--text-main);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-main);
+    border-radius: 50%;
+    font-size: 18px;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.social-icons a:hover {
+    background: var(--accent-gradient);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+}

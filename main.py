@@ -38,7 +38,7 @@ def create_table():
             image_url TEXT,
             creator TEXT NOT NULL,
             price TEXT NOT NULL
-            )""") #New column added: image_url, creator, price
+            )""")
     conn.commit()
     conn.close()
 
@@ -65,7 +65,9 @@ def game_list():
     year = request.args.get('year-search', '').strip()
 
     creator = request.args.get('creator-search', '').strip()
-    price = request.args.get('price-search', '').strip()
+    # price = request.args.get('price-search', '').strip()
+    price_min = request.args.get('price-min', '').strip()
+    price_max = request.args.get('price-max', '').strip()
 
     if name:
         conditions.append("title LIKE ?")
@@ -92,10 +94,18 @@ def game_list():
         conditions.append("creator LIKE ?")
         parameters.append(f"%{creator}%")
 
-    if price:
-        conditions.append("price LIKE ?")
-        parameters.append(f"%{price}%")
+    # if price:
+    #     conditions.append("price LIKE ?")
+    #     parameters.append(f"%{price}%")
 
+    sql_numeric_price = "CAST(REPLACE(price, '$', '') AS REAL)"
+
+    if price_min:
+        conditions.append(f"{sql_numeric_price} >= ?")
+        parameters.append(float(price_min))
+    if price_max:
+        conditions.append(f"{sql_numeric_price} <= ?")
+        parameters.append(float(price_max))
 
     if conditions:
         query += " WHERE " + " AND ".join(conditions)
@@ -104,9 +114,18 @@ def game_list():
     games = cursor.fetchall()
     conn.close()
 
-    return render_template('game_list.html', games=games, search_values={
-        'name': name, 'genre': genre, 'platform': platform, 'rating': rating, 'year': year, 'creator': creator, 'price': price
-    })
+    search_values = {
+        'name': name,
+        'genre': genre,
+        'platform': platform,
+        'rating': rating,
+        'year': year,
+        'creator': creator,
+        'price_min': price_min,
+        'price_max': price_max
+    }
+
+    return render_template('game_list.html', games=games, search_values=search_values)
 
 
 @app.route('/game/<int:game_id>')
@@ -119,7 +138,7 @@ def  game_detail(game_id):
     conn.close()
     
     if game is None:
-        return "Game not found", 404
+        return "Game not found"
     return render_template('game.html', game=game)
 
 @app.route('/delete_game/<int:game_id>', methods=['POST'])
@@ -142,7 +161,7 @@ def  add_game():
         rating = request.form['rating']
         description = request.form['description']
         release_year = request.form['release_year']
-        # New fields added for image_url, creator, and price
+
         image_url = request.form['image_url']
         creator = request.form['creator']
         price = request.form['price']

@@ -7,10 +7,28 @@
     <h1>Recommended Game</h1>
     <div class="list-item" onclick="window.location.href='/game/{{ game[0] }}'">
 
-        <p>{{ game[1] }}</p>
-        
-        <p>{{ game[8] }}</p>
+        <div class="game-media">
+            {% if game[7] %}
+                <img src="{{ game[7] }}" alt="{{ game[1] }} cover art" class="game-detail-img" style="max-width: 300px;">
+            {% else %}
+                <img src="/static/images/default-cover.jpg" alt="No Cover Art Available" class="game-detail-img" style="max-width: 300px;">
+            {% endif %}
+        </div>
+    
+        <h1>{{ game[1] }}</h1>
+        <p><strong>Genre:</strong> {{ game[2] }}</p>
+        <p><strong>Platform:</strong> {{ game[3] }}</p>
+        <p><strong>Rating:</strong> {{ game[4] }} / 5.0</p>
+        <p><strong>Release Year:</strong> {{ game[6] }}</p>
+        <p><strong>Description:</strong> {{ game[5] }}</p>
+
+        <p><strong>Creator:</strong> {{ game[8] }}</p>
+        <p><strong>Price:</strong> {{ game[9] }}</p>
 
     </div>
+
+    <form action="/recommend_game" method="POST">
+        <button type="submit">Recommend Another Game</button>
+    </form>
 
 {% endblock %}
